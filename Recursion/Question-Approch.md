@@ -10,13 +10,13 @@
 
 **Recursion tree**
 
+```
 sum(3, 0)
 └── sum(2, 3)
     └── sum(1, 5)
         └── sum(0, 6)
             └── logs "Sum: 6"
-
------------
+```
 
 # Functional:
 - You don’t pass any accumulated value (no sum or total as parameter).
@@ -24,6 +24,7 @@ sum(3, 0)
 - The result is built up through return values like a mathematical expression.
 
 **Recursion tree**
+```
 sum(3)
 ├── returns 3 + sum(2)
 │   ├── returns 2 + sum(1)
@@ -32,5 +33,4 @@ sum(3)
 │   │   └── returns 1 + 0 = 1
 │   └── returns 2 + 1 = 3
 └── returns 3 + 3 = 6
-
------------
+```
