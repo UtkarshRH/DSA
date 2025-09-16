@@ -57,7 +57,7 @@ class Solution {
                     }
                 }
                 // case 3: both i and j in b[]
-                else if (i >= n && j >= n) {
+                else{
                     if (b[i - n] > b[j - n]) {
                         [b[i - n], b[j - n]] = [b[j - n], b[i - n]];
                     }
