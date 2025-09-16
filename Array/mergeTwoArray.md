@@ -10,17 +10,6 @@ The task is to merge them in-place such that:
 
 ---
 
-## Naive Approach (Swap + Re-sort)
-
-### Steps
-1. Start with the last element of `a` (`a[n-1]`) and the first element of `b` (`b[0]`).
-2. If `a[n-1] > b[0]`, swap them.
-3. Re-sort `a` and `b` individually to restore order.
-4. Repeat steps 1–3 until `a[n-1] <= b[0]`.
-5. Final arrays `a` and `b` are correctly partitioned.
-
----
-
 ## Efficient Approach (Gap Method)
 
 ### Steps
@@ -36,6 +25,51 @@ The task is to merge them in-place such that:
 4. Arrays `a` and `b` are now merged in-place.
 
 ---
+
+# Merge Two Sorted Arrays (Gap Method)
+
+```js
+class Solution {
+    mergeArrays(a, b) {
+        let n = a.length;
+        let m = b.length;
+        
+        function nextGap(gap) {
+            if (gap <= 1) return 0;
+            return Math.ceil(gap / 2);
+        }
+        
+        let gap = nextGap(m + n);
+        while (gap > 0) {
+            let i = 0, j = gap; 
+        
+            while (j < n + m) {
+                // case 1: both i and j in a[]
+                if (i < n && j < n) {
+                    if (a[i] > a[j]) {
+                        [a[i], a[j]] = [a[j], a[i]];
+                    }
+                }
+                // case 2: i in a[], j in b[]
+                else if (i < n && j >= n) {
+                    if (a[i] > b[j - n]) {
+                        [a[i], b[j - n]] = [b[j - n], a[i]];
+                    }
+                }
+                // case 3: both i and j in b[]
+                else if (i >= n && j >= n) {
+                    if (b[i - n] > b[j - n]) {
+                        [b[i - n], b[j - n]] = [b[j - n], b[i - n]];
+                    }
+                }
+                i++;
+                j++;
+            }
+            gap = nextGap(gap);
+        }
+    }
+}
+
 
 ## Example Walkthrough (Naive Method)
 
