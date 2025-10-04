@@ -1,3 +1,6 @@
+```text
+Permutation Tree for nums = [1,2,3]
+
 Start [] , used=[false,false,false]
  ├── Pick 1 → path=[1] , used=[true,false,false]
  │     ├── Pick 2 → path=[1,2] , used=[true,true,false]
